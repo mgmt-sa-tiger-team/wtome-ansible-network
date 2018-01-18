@@ -14,8 +14,7 @@
   register: facts
 
 - set_fact:
-    startup_config: config
-    nxos_facts: facts
+    startup_config: "{{ config.stdout[0] }}"
     cacheable: true
 
 - name: write backup to file
