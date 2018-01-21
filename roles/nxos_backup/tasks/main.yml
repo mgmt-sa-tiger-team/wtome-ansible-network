@@ -10,6 +10,13 @@
       - show startup-config
   register: config
 
+- nxos_facts:
+  register: facts
+
+- set_fact:
+    startup_config: "{{ config.stdout[0] }}"
+    cacheable: true
+
 - name: write backup to file
   copy:
     content: "{{ config.stdout[0] }}"
